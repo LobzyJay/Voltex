@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VOLTEX — Decentralised Grid Protocol</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
-<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script><script src="data.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
 <style>
 /* ══════════════════════════════════════════════════
@@ -1381,10 +1381,7 @@ body:has(a:hover) #cur-ring{
   </a>
 
   <!-- Centre: Navigation -->
-  <nav class="h-nav" aria-label="Main navigation">
-    <a href="#pole-section"  class="nav-link">Infrastructure</a>
-    <a href="#bento-section" class="nav-link">Technology</a>
-    <a href="#about-section" class="nav-link">About</a>
+  <nav class="h-nav" id="h-nav" aria-label="Main navigation">
   </nav>
 
   <!-- Right: Telemetry + CTA + Burger -->
@@ -1415,11 +1412,7 @@ body:has(a:hover) #cur-ring{
 
 <!-- Mobile full-screen overlay menu -->
 <div class="h-menu-overlay" id="h-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <nav class="h-overlay-nav">
-    <a href="#bento-section" class="nav-link">Technology <span>01</span></a>
-    <a href="#pole-section"  class="nav-link">Infrastructure <span>02</span></a>
-    <a href="#about-section" class="nav-link">About <span>03</span></a>
-    <a href="#about-section" class="nav-link">About <span>04</span></a>
+  <nav class="h-overlay-nav" id="h-overlay-nav">
   </nav>
   <div class="h-overlay-foot">
     <span class="h-overlay-foot-text">VOLTEX Grid Protocol · Sydney NSW</span>
@@ -1452,13 +1445,10 @@ body:has(a:hover) #cur-ring{
   </div>
 
   <div class="hero-content">
-    <div class="eyebrow">Physical Infrastructure · On-Chain Settlement · NEM Verified</div>
-    <h1 class="hero-h1">Powering<br><em>the Network</em></h1>
-    <p class="hero-sub">Physical grid infrastructure owned by node operators, verified on-chain. VOLTEX is the protocol connecting Australia's energy network to decentralised settlement.</p>
-    <div class="cta-row">
-      <button class="btn-p" onclick="const t=document.getElementById('bento-section');window.__lenis?window.__lenis.scrollTo(t,{duration:1.4}):t.scrollIntoView({behavior:'smooth'})">Explore Protocol</button>
-      <button class="btn-g" onclick="const t=document.getElementById('about-section');window.__lenis?window.__lenis.scrollTo(t,{duration:1.4}):t.scrollIntoView({behavior:'smooth'})">Run a Node</button>
-    </div>
+    <div class="eyebrow" id="hero-eyebrow"></div>
+    <h1 class="hero-h1" id="hero-h1"></h1>
+    <p class="hero-sub" id="hero-sub"></p>
+    <div class="cta-row" id="hero-ctas"></div>
   </div>
 </section>
 
@@ -1476,50 +1466,7 @@ body:has(a:hover) #cur-ring{
       </div>
 
       <!-- Panels fill remaining height -->
-      <div class="phase-panels-wrap">
-        <div class="phase-panel visible" id="phase-0">
-          <div class="phase-num">01 &nbsp; Structure</div>
-          <h2 class="phase-title">Engineered<br>to <em>endure</em></h2>
-          <p class="phase-body">Galvanised steel lattice rated to AS/NZS 7000, Wind Region D. Each structure hosts a telemetry node. Uptime, load and environmental data attested on-chain every 60 seconds.</p>
-          <div class="phase-stat">
-            <div class="stat-item"><div class="stat-n">18<em>m</em></div><div class="stat-l">Height</div></div>
-            <div class="stat-item"><div class="stat-n">50<em>yr</em></div><div class="stat-l">Design Life</div></div>
-            <div class="stat-item"><div class="stat-n">60<em>s</em></div><div class="stat-l">Attest Interval</div></div>
-          </div>
-        </div>
-
-        <div class="phase-panel" id="phase-1">
-          <div class="phase-num">02 &nbsp; Capacity</div>
-          <h2 class="phase-title">132,000<br><em>volts</em> live</h2>
-          <p class="phase-body">132kV AEMO-compliant transmission along the Hunter Valley corridor. Line capacity, power factor and thermal load metered at each node and written to the protocol in real time.</p>
-          <div class="phase-stat">
-            <div class="stat-item"><div class="stat-n">132<em>kV</em></div><div class="stat-l">Line Voltage</div></div>
-            <div class="stat-item"><div class="stat-n">340<em>km</em></div><div class="stat-l">NEM Corridor</div></div>
-            <div class="stat-item"><div class="stat-n">480<em>K</em></div><div class="stat-l">Homes Served</div></div>
-          </div>
-        </div>
-
-        <div class="phase-panel" id="phase-2">
-          <div class="phase-num">03 &nbsp; Reliability</div>
-          <h2 class="phase-title">Fault detected.<br><em>Protocol</em> notified.</h2>
-          <p class="phase-body">Each node monitors thermal load, sag and environmental risk continuously. A fault event triggers an on-chain alert 400ms before circuit breakers fire, protecting operator uptime scores that determine VLTX reward rates.</p>
-          <div class="phase-stat">
-            <div class="stat-item"><div class="stat-n">400<em>ms</em></div><div class="stat-l">Fault Detect</div></div>
-            <div class="stat-item"><div class="stat-n">99.97<em>%</em></div><div class="stat-l">Uptime SLA</div></div>
-            <div class="stat-item"><div class="stat-n">24<em>/7</em></div><div class="stat-l">Live Monitoring</div></div>
-          </div>
-        </div>
-
-        <div class="phase-panel" id="phase-3">
-          <div class="phase-num">04 &nbsp; Network</div>
-          <h2 class="phase-title">Not a pole.<br>A <em>node</em>.</h2>
-          <p class="phase-body">Every structure in the corridor runs a telemetry node. Load, temperature, sag and bushfire risk — written to the protocol every 60 seconds. Node operators earn VLTX proportional to verified uptime. 2,400 nodes. One living network.</p>
-          <div class="phase-stat">
-            <div class="stat-item"><div class="stat-n">2,400</div><div class="stat-l">Active Nodes</div></div>
-            <div class="stat-item"><div class="stat-n">VLTX</div><div class="stat-l">Reward Token</div></div>
-            <div class="stat-item"><div class="stat-n">60<em>s</em></div><div class="stat-l">Write Interval</div></div>
-          </div>
-        </div>
+      <div class="phase-panels-wrap" id="phase-panels-wrap">
       </div>
 
       <!-- Bottom: horizontal progress -->
@@ -1554,58 +1501,7 @@ body:has(a:hover) #cur-ring{
     <p class="b-desc">2,400 nodes. 340km of corridor. Every watt metered, every fault flagged, every uptime score verified. Physical infrastructure and on-chain settlement as one system.</p>
   </div>
 
-  <div class="bento-grid">
-
-    <!-- Card A: Energy Flow -->
-    <div class="bc" id="bc-flow">
-      <canvas id="cv-flow"></canvas>
-      <div class="bc-text">
-        <div class="bc-label">01 · On-Chain Flow</div>
-        <div class="bc-name">Energy Flow <em>Live</em></div>
-        <div class="bc-desc">132kV across the Hunter Valley NEM corridor. Transfer data metered at every node, settlements executed automatically on-protocol.</div>
-      </div>
-    </div>
-
-    <!-- Card B: Node Network -->
-    <div class="bc" id="bc-nodes">
-      <canvas id="cv-nodes"></canvas>
-      <div class="bc-text">
-        <div class="bc-label">02 · Node Network</div>
-        <div class="bc-name"><em>2,400</em> Active Nodes</div>
-        <div class="bc-desc">2,400 monitoring nodes across 340km of NEM corridor. Each earning VLTX rewards proportional to verified uptime.</div>
-      </div>
-    </div>
-
-    <!-- Card C: Frequency -->
-    <div class="bc" id="bc-freq">
-      <canvas id="cv-freq"></canvas>
-      <div class="bc-text">
-        <div class="bc-label">03 · Protocol Frequency</div>
-        <div class="bc-name"><em>50.00</em> Hz NEM</div>
-        <div class="bc-desc">50Hz standard monitored at every node, attested on-chain. Hover to simulate a demand spike. Protocol flags deviation in 400ms.</div>
-      </div>
-    </div>
-
-    <!-- Card D: Load -->
-    <div class="bc" id="bc-load">
-      <canvas id="cv-load"></canvas>
-      <div class="bc-text">
-        <div class="bc-label">04 · Network Capacity</div>
-        <div class="bc-name">Corridor <em>Load</em></div>
-        <div class="bc-desc">Real-time load across the 340km corridor. Hover to simulate summer peak. On-chain SLA enforcement activates at threshold breach.</div>
-      </div>
-    </div>
-
-    <!-- Card E: Voltage Step-Down — animated voltage diagram -->
-    <div class="bc" id="bc-voltage">
-      <canvas id="cv-voltage"></canvas>
-      <div class="bc-text">
-        <div class="bc-label">05 · Distribution Layer</div>
-        <div class="bc-name">132kV → <em>415V</em></div>
-        <div class="bc-desc">Three-stage step-down across the distribution network. Loss factor below 0.8%. Each stage metered and attested on-protocol.</div>
-      </div>
-    </div>
-
+  <div class="bento-grid" id="bento-grid">
   </div>
 </section>
 
@@ -1617,79 +1513,23 @@ body:has(a:hover) #cur-ring{
   <!-- Top: mission pull quote -->
   <div class="about-top">
     <div class="about-label" id="about-label-el">
-      <span class="about-label-tag">About VOLTEX AU</span>
-      <span class="about-label-line"></span>
-      <span class="about-label-num">DePIN · Sydney, AU</span>
     </div>
     <h2 class="about-mission" id="about-mission-h2">
-      <span class="mline">Infrastructure</span>
-      <span class="mline">owned by the</span>
-      <span class="mline">people who</span>
-      <span class="mline"><em>run it.</em></span>
     </h2>
   </div>
 
   <!-- Bottom: split — stats left, text right -->
   <div class="about-bottom">
-    <div class="about-stats">
-      <div class="about-stat about-stat-anim">
-        <div class="about-stat-n">2,400</div>
-        <div class="about-stat-l">Active Nodes</div>
-      </div>
-      <div class="about-stat about-stat-anim">
-        <div class="about-stat-n"><em>340</em><span style="font-size:.5em">km</span></div>
-        <div class="about-stat-l">NEM Corridor</div>
-      </div>
-      <div class="about-stat about-stat-anim">
-        <div class="about-stat-n"><em>2030</em></div>
-        <div class="about-stat-l">Full Corridor Target</div>
-      </div>
-      <div class="about-stat about-stat-anim">
-        <div class="about-stat-n"><em>$340M</em></div>
-        <div class="about-stat-l">Infrastructure Committed</div>
-      </div>
+    <div class="about-stats" id="about-stats">
     </div>
 
-    <div class="about-text">
-      <p class="about-body">
-        <span class="bline">VOLTEX is a DePIN protocol that deploys physical grid-monitoring infrastructure across Australia's National Electricity Market, starting with a 340km corridor from Newcastle to Tamworth through the Hunter Valley.</span>
-        <span class="bline">Each structure in the network hosts a telemetry node. Load, temperature, sag and fault risk — metered every 60 seconds and written to the protocol.</span>
-      </p>
-      <p class="about-body">
-        <span class="bline">Node operators earn VLTX rewards proportional to verified uptime. The economic incentive is aligned directly with physical grid reliability.</span>
-        <span class="bline">Every structure is built to AS/NZS 7000, rated for Wind Region D, with a 50-year design life. On-chain SLAs enforce performance, not paper contracts.</span>
-      </p>
-      <div class="about-offices">
-        <span class="about-office">Sydney</span>
-        <span class="about-office-sep">·</span>
-        <span class="about-office">Newcastle</span>
-        <span class="about-office-sep">·</span>
-        <span class="about-office">Tamworth</span>
-        <span class="about-office-sep">·</span>
-        <span class="about-office">Hunter Valley</span>
-      </div>
+    <div class="about-text" id="about-text">
     </div>
   </div>
 
   <!-- Ticker -->
   <div class="about-ticker">
-    <div class="about-ticker-track">
-      <span>2,400 Nodes</span><span class="ticker-dot">◆</span>
-      <span>VLTX Rewards</span><span class="ticker-dot">◆</span>
-      <span>340km Corridor</span><span class="ticker-dot">◆</span>
-      <span>On-Chain Verified</span><span class="ticker-dot">◆</span>
-      <span>NEM Compliant</span><span class="ticker-dot">◆</span>
-      <span>99.97% Uptime</span><span class="ticker-dot">◆</span>
-      <span>Hunter Valley</span><span class="ticker-dot">◆</span>
-      <span>400ms Fault Detect</span><span class="ticker-dot">◆</span>
-      <span>2,400 Nodes</span><span class="ticker-dot">◆</span>
-      <span>VLTX Rewards</span><span class="ticker-dot">◆</span>
-      <span>340km Corridor</span><span class="ticker-dot">◆</span>
-      <span>On-Chain Verified</span><span class="ticker-dot">◆</span>
-      <span>NEM Compliant</span><span class="ticker-dot">◆</span>
-      <span>99.97% Uptime</span><span class="ticker-dot">◆</span>
-      <span>Hunter Valley</span><span class="ticker-dot">◆</span>
-      <span>400ms Fault Detect</span><span class="ticker-dot">◆</span>
+    <div class="about-ticker-track" id="ticker-track">
     </div>
   </div>
 
@@ -1709,7 +1549,7 @@ body:has(a:hover) #cur-ring{
         <div>
           <img src="logo.svg" alt="VOLTEX" style="height:20px;width:auto;display:block;opacity:0.75;margin-bottom:4px">
         </div>
-        <p class="ft-tagline">Physical grid infrastructure. On-chain settlement. Node rewards. Starting with the Hunter Valley NEM corridor.</p>
+        <p class="ft-tagline" id="ft-tagline"></p>
         <div class="ft-hud">
           <div class="ft-hud-row"><span class="ft-hud-key">System</span><div class="ft-hud-dot"></div><span class="ft-hud-val">Online</span></div>
           <div class="ft-hud-row"><span class="ft-hud-key">Uptime&nbsp;</span><span class="ft-hud-val">99.97%</span></div>
@@ -1721,25 +1561,7 @@ body:has(a:hover) #cur-ring{
       <div class="ft-div"></div>
 
       <!-- Right: links -->
-      <div class="ft-right">
-        <div>
-          <div class="ft-col-title">Protocol</div>
-          <ul class="ft-links">
-            <li><a href="#">Run a Node</a></li>
-            <li><a href="#">Token Economics</a></li>
-            <li><a href="#">Protocol Docs</a></li>
-            <li><a href="#">Whitepaper</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="ft-col-title">Company</div>
-          <ul class="ft-links">
-            <li><a href="#about-section" class="nav-link">About VOLTEX</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">GitHub</a></li>
-          </ul>
-        </div>
+      <div class="ft-right" id="ft-right">
       </div>
     </div>
 
@@ -1762,10 +1584,10 @@ body:has(a:hover) #cur-ring{
     </div>
 
     <div class="ft-bottom">
-      <div class="ft-copy">© 2025 VOLTEX Grid Protocol Pty Ltd · Sydney NSW 2000 · ABN 00 000 000 000</div>
+      <div class="ft-copy" id="ft-copyright"></div>
       <div class="ft-bottom-right">
-        <span class="ft-copy" id="ft-coord">SYS · 33.87°S · 151.21°E · SYDNEY</span>
-        <span class="ft-copy ft-build">BUILD 2024.03</span>
+        <span class="ft-copy" id="ft-coord"></span>
+        <span class="ft-copy ft-build" id="ft-build"></span>
       </div>
     </div>
   </footer>
@@ -1775,6 +1597,122 @@ body:has(a:hover) #cur-ring{
 // ════════════════════════════════════════════════════════════
 //  VOLTEX — Complete One-Pager JS
 // ════════════════════════════════════════════════════════════
+
+// ── Data-driven render ────────────────────────────────────
+(function renderAll(){
+  const D = window.VOLTEX;
+  if(!D) return;
+
+  // Nav
+  const nav = document.getElementById('h-nav');
+  if(nav) nav.innerHTML = D.nav.map(n =>
+    `<a href="${n.href}" class="nav-link">${n.label}</a>`
+  ).join('');
+
+  // Overlay nav
+  const onav = document.getElementById('h-overlay-nav');
+  if(onav) onav.innerHTML = D.overlayNav.map(n =>
+    `<a href="${n.href}" class="nav-link">${n.label} <span>${n.num}</span></a>`
+  ).join('');
+
+  // Hero
+  const eyebrow = document.getElementById('hero-eyebrow');
+  if(eyebrow) eyebrow.textContent = D.hero.eyebrow;
+  const heroH1 = document.getElementById('hero-h1');
+  if(heroH1) heroH1.innerHTML = D.hero.h1.join('<br>');
+  const heroSub = document.getElementById('hero-sub');
+  if(heroSub) heroSub.textContent = D.hero.sub;
+  const heroCtas = document.getElementById('hero-ctas');
+  if(heroCtas) heroCtas.innerHTML = D.hero.ctas.map(c =>
+    `<button class="${c.style}" onclick="const t=document.getElementById('${c.target}');window.__lenis?window.__lenis.scrollTo(t,{duration:1.4}):t.scrollIntoView({behavior:'smooth'})">${c.label}</button>`
+  ).join('');
+
+  // Phase panels
+  const pp = document.getElementById('phase-panels-wrap');
+  if(pp) pp.innerHTML = D.phases.map((p, i) =>
+    `<div class="phase-panel${i===0?' visible':''}" id="phase-${i}">
+      <div class="phase-num">${p.num} &nbsp; ${p.label}</div>
+      <h2 class="phase-title">${p.title}</h2>
+      <p class="phase-body">${p.body}</p>
+      <div class="phase-stat">${p.stats.map(s =>
+        `<div class="stat-item"><div class="stat-n">${s.n}</div><div class="stat-l">${s.label}</div></div>`
+      ).join('')}</div>
+    </div>`
+  ).join('');
+
+  // Bento cards
+  const bg = document.getElementById('bento-grid');
+  if(bg) bg.innerHTML = D.bento.map(c =>
+    `<div class="bc" id="${c.id}">
+      <canvas id="${c.cv}"></canvas>
+      <div class="bc-text">
+        <div class="bc-label">${c.label}</div>
+        <div class="bc-name">${c.name}</div>
+        <div class="bc-desc">${c.desc}</div>
+      </div>
+    </div>`
+  ).join('');
+
+  // About label
+  const al = document.getElementById('about-label-el');
+  if(al) al.innerHTML = `<span class="about-label-tag">${D.about.tag}</span><span class="about-label-line"></span><span class="about-label-num">${D.about.sub}</span>`;
+
+  // About mission
+  const mh = document.getElementById('about-mission-h2');
+  if(mh) mh.innerHTML = D.about.mission.map(l => `<span class="mline">${l}</span>`).join('');
+
+  // About stats
+  const as = document.getElementById('about-stats');
+  if(as) as.innerHTML = D.about.stats.map(s =>
+    `<div class="about-stat about-stat-anim">
+      <div class="about-stat-n">${s.n}</div>
+      <div class="about-stat-l">${s.label}</div>
+    </div>`
+  ).join('');
+
+  // About body + offices
+  const at = document.getElementById('about-text');
+  if(at){
+    const bodyHtml = D.about.body.map(paras =>
+      `<p class="about-body">${paras.map(s => `<span class="bline">${s}</span>`).join('')}</p>`
+    ).join('');
+    const sep = '<span class="about-office-sep">·</span>';
+    const offHtml = `<div class="about-offices">${D.about.offices.map((o,i,arr) =>
+      `<span class="about-office">${o}</span>${i<arr.length-1?sep:''}`
+    ).join('')}</div>`;
+    at.innerHTML = bodyHtml + offHtml;
+  }
+
+  // Ticker (doubled for infinite scroll loop)
+  const tt = document.getElementById('ticker-track');
+  if(tt){
+    const row = D.ticker.map(t => `<span>${t}</span><span class="ticker-dot">◆</span>`).join('');
+    tt.innerHTML = row + row;
+  }
+
+  // Footer tagline
+  const ftag = document.getElementById('ft-tagline');
+  if(ftag) ftag.textContent = D.footer.tagline;
+
+  // Footer links
+  const fr = document.getElementById('ft-right');
+  if(fr) fr.innerHTML = D.footer.links.map(col =>
+    `<div>
+      <div class="ft-col-title">${col.title}</div>
+      <ul class="ft-links">${col.items.map(item =>
+        `<li><a href="${item.href}"${item.cls ? ` class="${item.cls}"` : ''}>${item.label}</a></li>`
+      ).join('')}</ul>
+    </div>`
+  ).join('');
+
+  // Footer bottom text
+  const fcopy = document.getElementById('ft-copyright');
+  if(fcopy) fcopy.textContent = D.footer.copyright;
+  const fcoord = document.getElementById('ft-coord');
+  if(fcoord) fcoord.textContent = D.footer.coords;
+  const fbuild = document.getElementById('ft-build');
+  if(fbuild) fbuild.textContent = D.footer.build;
+})();
 
 // ── Cursor ────────────────────────────────────────────────
 const curEl  = document.getElementById('cur');
